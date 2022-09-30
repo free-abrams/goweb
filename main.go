@@ -7,13 +7,13 @@ import (
 )
 
 func main() {
+
 	startWebServer("9090")
 }
 
 func startWebServer(port string) {
 	r := routes.NewRouter()
 	http.Handle("/", r)
-
 	log.Println("Starting HTTP service at " + port)
 	err := http.ListenAndServe(":"+port, nil) // Goroutine will block here
 

@@ -24,4 +24,16 @@ var webRoutes = WebRoutes{
 		Pattern:     "/user",
 		HandlerFunc: Controllers.Index,
 	},
+	WebRoute{
+		Name:        "json",
+		Method:      "get",
+		Pattern:     "/json",
+		HandlerFunc: Controllers.Json,
+	},
+	WebRoute{
+		Name:        "bookmap",
+		Method:      "get",
+		Pattern:     "/bookmap",
+		HandlerFunc: Controllers.BookMap,
+	},
 }
