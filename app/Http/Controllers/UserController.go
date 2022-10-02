@@ -22,6 +22,7 @@ type Books struct {
 func Index(w http.ResponseWriter, r *http.Request) {
 	content := make([]byte, r.ContentLength)
 	r.Body.Read(content)
+
 	user := Models.User{}
 	json.Unmarshal(content, &user)
 

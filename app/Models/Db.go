@@ -6,6 +6,7 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
+	"goweb/app/Models/Admin"
 	"log"
 	"math/rand"
 )
@@ -14,13 +15,14 @@ var DbConn *gorm.DB
 
 func init() {
 	var err error
-	DbConn, err = gorm.Open(mysql.Open("root:root@/zero?charset=utf8mb4&parseTime=true"), &gorm.Config{
-		Logger: logger.Default.LogMode(logger.Info),
+	DbConn, err = gorm.Open(mysql.Open("root:@/zero?charset=utf8mb4&parseTime=true"), &gorm.Config{
+		Logger:                                   logger.Default.LogMode(logger.Info),
+		DisableForeignKeyConstraintWhenMigrating: true,
 	})
 	if err != nil {
 		panic(err)
 	}
-	//DbConn.AutoMigrate(&Post{}, &User{})
+	DbConn.AutoMigrate(&Post{}, &User{}, &Admin.Admin{})
 }
 
 // create a random UUID with from RFC 4122

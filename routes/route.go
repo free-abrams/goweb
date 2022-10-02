@@ -1,12 +1,20 @@
 package routes
 
-import "github.com/gorilla/mux"
+import (
+	"github.com/gorilla/mux"
+	"goweb/app/Http/Request"
+)
 
 // NewRouter 返回一个 mux.Router 类型指针，从而可以当作处理器使用
 func NewRouter() *mux.Router {
 
 	// 创建 mux.Router 路由器示例
 	router := mux.NewRouter().StrictSlash(true)
+	// 获取请求对象
+	router.Use(Request.Init)
+
+	// 应用请求日志中间件
+	//router.Use(loggingRequestInfo)
 
 	// 遍历 web.go 中定义的所有 webRoutes
 	for _, route := range webRoutes {
